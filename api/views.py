@@ -22,8 +22,8 @@ class UserRegistrationAPI(APIView):
         serializer = UserRegisterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'registeration successfull!'}, serializer.data, status=status.HTTP_201_CREATED)
-        
+            return Response({'message': 'registeration successfull!', 'data': serializer.data}, status=status.HTTP_201_CREATED)
+
         return Response({"serializer.data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -37,7 +37,6 @@ class UserLoginAPI(APIView):
             email = serializer.validated_data['email']
             password = serializer.validated_data['password']
 
-            
             serializer.save()
             return Response({'message': 'login successfull!'}, serializer.data, status=status.HTTP_202_ACCEPTED)
         return Response({"serializer.data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
