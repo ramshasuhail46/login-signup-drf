@@ -12,7 +12,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email']
+        fields = ['email', 'password']
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -33,3 +33,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'password', 'username', 'first_name', 'last_name']
+
+
+class EmailVerificationSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    otp = serializers.IntegerField(required=False)
+
+    class Meta:
+        fields = '__all__'

@@ -65,6 +65,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=100, unique=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    otp = models.IntegerField(max_length=4, default=0000)
     role = models.CharField(
         max_length=200, choices=options, default='Passenger')
 
@@ -108,9 +109,6 @@ class Flight(models.Model):
     flight_duration = models.TimeField(default=datetime.time(5, 0))
 
     def __str__(self):
-        """
-
-        """
         return self.flight_number
 
 
