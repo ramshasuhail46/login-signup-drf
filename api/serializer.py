@@ -41,3 +41,12 @@ class EmailVerificationSerializer(serializers.Serializer):
 
     class Meta:
         fields = '__all__'
+
+
+class PasswordResetSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    token = serializers.CharField()
+    new_password = serializers.CharField()
